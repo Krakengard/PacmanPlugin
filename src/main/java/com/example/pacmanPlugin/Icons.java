@@ -29,6 +29,6 @@ public class Icons {
     public static final ImageIcon PacLeft = new ImageIcon(Icons.class.getResource("/icons/PacManLeft.gif"));
     public static final ImageIcon PacUp = new ImageIcon(Icons.class.getResource("/icons/PacManUp.gif"));
     public static final ImageIcon PacDown = new ImageIcon(Icons.class.getResource("/icons/PacManDown.gif"));
-    public static final Icon PinkGhost = loadGif("/icons/pinkghost.gif");
-    public static final Icon BlueGhost = loadGif("/icons/blueghost.gif");
+    public static final ImageIcon PinkGhost = new ImageIcon(Icons.class.getResource("/icons/pinkghostright.gif"));
+    public static final ImageIcon BlueGhost = new ImageIcon(Icons.class.getResource("/icons/blueghostright.gif"));
 }

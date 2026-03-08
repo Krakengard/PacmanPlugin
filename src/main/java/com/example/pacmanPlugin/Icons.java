@@ -1,10 +1,30 @@
 package com.example.pacmanPlugin;
 
-import com.intellij.openapi.util.IconLoader;
 import javax.swing.Icon;
+import javax.swing.ImageIcon;
 
 public class Icons {
-    public static final Icon PacMan=IconLoader.getIcon("/icons/PacMan.gif", Icons.class);
-    public static final Icon PinkGhost=IconLoader.getIcon("/icons/pinkghost.gif", Icons.class);
-    public static final Icon BlueGhost=IconLoader.getIcon("/icons/blueghost.gif", Icons.class);
+
+    private static final int ICON_SIZE = 16;
+
+    private static Icon loadGif(String path) {
+        // Загружаем GIF как ImageIcon
+        ImageIcon originalIcon = new ImageIcon(Icons.class.getResource(path));
+        // Проверяем размеры GIF
+        int width = originalIcon.getIconWidth();
+        int height = originalIcon.getIconHeight();
+
+        // Если размер уже меньше или равен, оставляем как есть
+        if (width <= ICON_SIZE && height <= ICON_SIZE) {
+            return originalIcon;
+        }
+
+        // Масштабируем статично первый кадр GIF, чтобы размер поместился
+        java.awt.Image scaledImage = originalIcon.getImage().getScaledInstance(ICON_SIZE, ICON_SIZE, java.awt.Image.SCALE_DEFAULT);
+        return new ImageIcon(scaledImage);
+    }
+
+    public static final Icon PacMan = loadGif("/icons/PacMan.gif");
+    public static final Icon PinkGhost = loadGif("/icons/pinkghost.gif");
+    public static final Icon BlueGhost = loadGif("/icons/blueghost.gif");
 }

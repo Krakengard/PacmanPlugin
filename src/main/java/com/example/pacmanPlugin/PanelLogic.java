@@ -1,7 +1,8 @@
 package com.example.pacmanPlugin;
 
 import com.intellij.ui.components.JBPanel;
-import javax.swing.Timer;
+
+import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
@@ -37,11 +38,11 @@ public class PanelLogic extends JBPanel<PanelLogic> {
                 if (isWon) return;
 
                 int key = e.getKeyCode();
-                if (key == KeyEvent.VK_UP && camMove(0, 1)) {
+                if (key == KeyEvent.VK_UP && camMove(0, -1)) {
                     dx = 0;
                     dy = -1;
                 }
-                if (key == KeyEvent.VK_DOWN && camMove(0, -1)) {
+                if (key == KeyEvent.VK_DOWN && camMove(0, 1)) {
                     dx = 0;
                     dy = 1;
                 }
@@ -101,14 +102,15 @@ public class PanelLogic extends JBPanel<PanelLogic> {
 
                 if(gameMap[i][j]==1){
                     G2.setColor(new Color(13, 13, 130));
-                    G2.drawRect(X+2,Y+2,Map.CellSize-4,Map.CellSize-4);
+                    G2.fillRect(X+2,Y+2,Map.CellSize-4,Map.CellSize-4);
                 } else if (gameMap[i][j]==0){
                     G2.setColor(new Color(241, 186, 235));
                     G2.fillOval(X+8,Y+8,4,4);
                 }
             }
         }
-        Icons.PacMan.paintIcon(this,G2,pacX*Map.CellSize,pacY*Map.CellSize);
+        //Icons.PacMan.paintIcon(this,G2,pacX*Map.CellSize,pacY*Map.CellSize);
+        G2.drawImage(((ImageIcon)Icons.PacMan).getImage(),pacX*Map.CellSize,pacY*Map.CellSize, Map.CellSize,Map.CellSize,this);
         if(isWon){
             G2.setColor(Color.YELLOW);
             G2.setFont(new Font("Monospaced",Font.BOLD,30));

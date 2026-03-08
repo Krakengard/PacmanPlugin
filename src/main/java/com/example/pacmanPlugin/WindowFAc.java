@@ -11,13 +11,12 @@ public class WindowFAc implements ToolWindowFactory {
     public void createToolWindowContent(Project project,  ToolWindow toolWindow){
         PanelLogic panel=new PanelLogic();
 
-        /*ContentFactory contentFactory=ContentFactory.getInstance();
-        Content content=contentFactory.createContent(panel,"",false);
-        toolWindow.getContentManager().addContent(content);*/
+
         Content content = ContentFactory.getInstance()
                 .createContent(panel, "", false);
 
         toolWindow.getContentManager().addContent(content);
+        panel.requestFocusInWindow();
     }
 
 }

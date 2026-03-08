@@ -10,11 +10,13 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 public class PanelLogic extends JBPanel<PanelLogic> {
-    private int pacX = 14;
-    private int pacY = 4;
+    private int pacX = 13;
+    private int pacY = 7;
 
     private int dx = 0;
     private int dy = 0;
+
+    private ImageIcon currentPacman = Icons.PacRight;
 
     private final int[][] gameMap;
     private boolean isWon = false;
@@ -39,20 +41,17 @@ public class PanelLogic extends JBPanel<PanelLogic> {
 
                 int key = e.getKeyCode();
                 if (key == KeyEvent.VK_UP && camMove(0, -1)) {
-                    dx = 0;
-                    dy = -1;
-                }
-                if (key == KeyEvent.VK_DOWN && camMove(0, 1)) {
-                    dx = 0;
-                    dy = 1;
-                }
-                if (key == KeyEvent.VK_LEFT && camMove(-1, 0)) {
-                    dx = -1;
-                    dy = 0;
-                }
-                if (key == KeyEvent.VK_RIGHT && camMove(1, 0)) {
-                    dx = 1;
-                    dy = 0;
+                    dx = 0; dy = -1;
+                    currentPacman = Icons.PacUp;
+                } else if (key == KeyEvent.VK_DOWN && camMove(0, 1)) {
+                    dx = 0; dy = 1;
+                    currentPacman = Icons.PacDown;
+                } else if (key == KeyEvent.VK_LEFT && camMove(-1, 0)) {
+                    dx = -1; dy = 0;
+                    currentPacman = Icons.PacLeft;
+                } else if (key == KeyEvent.VK_RIGHT && camMove(1, 0)) {
+                    dx = 1; dy = 0;
+                    currentPacman = Icons.PacRight;
                 }
             }
         });
@@ -110,7 +109,8 @@ public class PanelLogic extends JBPanel<PanelLogic> {
             }
         }
         //Icons.PacMan.paintIcon(this,G2,pacX*Map.CellSize,pacY*Map.CellSize);
-        G2.drawImage(((ImageIcon)Icons.PacMan).getImage(),pacX*Map.CellSize,pacY*Map.CellSize, Map.CellSize,Map.CellSize,this);
+        //G2.drawImage(((ImageIcon)Icons.PacMan).getImage(),pacX*Map.CellSize,pacY*Map.CellSize, Map.CellSize,Map.CellSize,this);
+        G2.drawImage(currentPacman.getImage(), pacX * Map.CellSize, pacY * Map.CellSize, Map.CellSize, Map.CellSize, this);
         if(isWon){
             G2.setColor(Color.YELLOW);
             G2.setFont(new Font("Monospaced",Font.BOLD,30));

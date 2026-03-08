@@ -24,7 +24,11 @@ public class Icons {
         return new ImageIcon(scaledImage);
     }
 
-    public static final Icon PacMan = loadGif("/icons/PacMan.gif");
+    //public static final Icon PacMan = loadGif("/icons/PacMan.gif");
+    public static final ImageIcon PacRight = new ImageIcon(Icons.class.getResource("/icons/PacManRight.gif"));
+    public static final ImageIcon PacLeft = new ImageIcon(Icons.class.getResource("/icons/PacManLeft.gif"));
+    public static final ImageIcon PacUp = new ImageIcon(Icons.class.getResource("/icons/PacManUp.gif"));
+    public static final ImageIcon PacDown = new ImageIcon(Icons.class.getResource("/icons/PacManDown.gif"));
     public static final Icon PinkGhost = loadGif("/icons/pinkghost.gif");
     public static final Icon BlueGhost = loadGif("/icons/blueghost.gif");
 }
